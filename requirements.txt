@@ -1,0 +1,11 @@
+certifi==2021.10.8
+charset-normalizer==2.0.12
+colorlog==6.6.0
+Cython==0.29.27
+idna==3.3
+numpy==1.22.2
+opencv-python==4.5.5.62
+requests==2.27.1
+tqdm==4.62.3
+urllib3==1.26.8
+vidgear==0.2.5

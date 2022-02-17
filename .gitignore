@@ -1,4 +1,6 @@
+old
 venv
+venv-windows
 __pycache__
 
 *.mp4

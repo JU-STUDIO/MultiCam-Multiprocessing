@@ -2,7 +2,9 @@ from config import Config
 import tkinter as tk
 import cv2
 
-def control_panel(save_frame_flag, captured_frame_num):
+def control_panel(save_frame_flag, last_captured_frame_num):
+
+    replay_frame_num = 0
 
     def start_save():
         save_frame_flag.value = int(1)
@@ -26,15 +28,21 @@ def control_panel(save_frame_flag, captured_frame_num):
             cv2.imshow('Replay', replay_frame)
 
     def next_frame():
-        captured_frame_num.value += 1
-        show_frame(captured_frame_num.value)
+        if last_captured_frame_num.value > replay_frame_num:
+            last_captured_frame_num.value += 1
+            show_frame(last_captured_frame_num.value)
+        else:
+            show_frame(int(0))
 
     def prev_frame():
-        captured_frame_num.value -= 1
-        show_frame(captured_frame_num.value)
+        if last_captured_frame_num.value > replay_frame_num:
+            last_captured_frame_num.value -= 1
+            show_frame(last_captured_frame_num.value)
+        else:
+            show_frame(int(0))
 
     def replay_frame():
-        show_replay_frame(captured_frame_num.value)
+        show_replay_frame(last_captured_frame_num.value)
 
 
     window = tk.Tk()

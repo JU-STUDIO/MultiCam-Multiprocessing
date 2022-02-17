@@ -7,3 +7,5 @@ class Config:
     "CAP_PROP_FRAME_HEIGHT": 240,
     "CAP_PROP_FPS": 30,
     }
+
+    last_replay_frame_num = 0

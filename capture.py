@@ -14,18 +14,20 @@ def capture(save_frame_flag, last_captured_frame_num):
             for cam_id in range(0,Config.camera_quantity):
                 
                 globals()['cam_'+str(cam_id)+'_frame'] = globals()['stream_'+str(cam_id)].read()
-
+                
                 if globals()['cam_'+str(cam_id)+'_frame'] is None:
                     break
-                
+
                 if save_frame_flag.value == int(1):
-                    last_captured_frame_num.value += 1
                     cv2.imwrite(fr'videos/{cam_id}/{frame_count}.png', globals()['cam_'+str(cam_id)+'_frame'])
 
                 cv2.putText(globals()['cam_'+str(cam_id)+'_frame'], str(frame_count), (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 1, cv2.LINE_AA)
                 cv2.imshow(f"CAM_{cam_id}", globals()['cam_'+str(cam_id)+'_frame'])
 
-            frame_count += 1
+            if save_frame_flag.value == int(1):
+                frame_count += 1
+                last_captured_frame_num.value += 1 
+                Config.last_replay_frame_num = last_captured_frame_num.value
 
             key = cv2.waitKey(1)
             if key == 27 : # ESC
